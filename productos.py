@@ -12,9 +12,9 @@ def agregar_productos(codigo, nombre, marca, precio, existencias):
     proveedor.append(inventario)
 
 def buscar_productos(codigo):
-    for estudiante in estudiantes:
-        if estudiante["carnet"]==carnet:
-            return estudiante
+    for productos in inventario:
+        if productos["codigo"]==codigo:
+            return productos
     return None
 
 def modificar_estudiante(carnet, nombre, edad, calificaciones):
