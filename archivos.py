@@ -12,6 +12,8 @@ WHITE = "\033[37m"
 
 from datetime import datetime as dt
 import productos as pro
+from productos import seleccionar_proveedor
+#from reportlab.lib.pagesizes import letter
 #from productos import agregar_productos, buscar_productos, modificar_productos
 
 def mostrar_menu():
@@ -37,6 +39,7 @@ def main():
                 marca =  input("provedor: ")
                 precio = float(input("Precio: "))
                 existencias = int(input("Existencias: "))
+                provedor = seleccionar_proveedor()
                 pro.agregar_productos(codigo, nombre, marca, precio, existencias)
 
             elif opcion == "2":
@@ -66,18 +69,13 @@ def main():
                     print("Producto no encontrado.")
         
             elif opcion == "6":
-                carnet = input("Carnet: ")
-                promedio = pro.promedio_calificaciones(carnet)
-                print(f"Promedio de calificaciones: {promedio}")
+                guardar_inventario()
+                print(f" {BOLD} {CYAN} Inventario guardado con exito {RESET}")
+                                                             
 
             elif opcion == "7":
-                aprobados, reprobados = pro.lista_aprobados_reprobados()
-                print("Aprobados:")
-                for estudiante in aprobados:
-                    print(estudiante)
-                print("Reprobados:")
-                for estudiante in reprobados:
-                    print(estudiante)
+                cargar_inventario()
+                print(f" {BOLD} {CYAN} Inventario cargado con exito {RESET}")
 
             elif opcion == "8":
                 break
@@ -86,7 +84,18 @@ def main():
         except ValueError:
             print("Opcion no valida, Intente de nuevo.")
 
-def cargarEspaciosYPrecios(archivo):
+def guardar_inventario():
+
+    opcion = input("¿Desea guardar la factura (txt)? ").lower()
+    if opcion == "txt":
+        with open("factura.txt", "w") as file:
+            file.write(opcion)
+        print("inventario guardada en TXT")
+    else:
+        print(f"{BOLD}{RED}Opción de formato de archivo no válida{RESET}")
+
+def cargar_inventario():
+
     codigo = {}
     nombre = {}
     marca  = {}
@@ -94,37 +103,29 @@ def cargarEspaciosYPrecios(archivo):
     existencias = {}
 
     try:
+        archivo = input("Ingrese el nombre del archivo que desea cargar: ")
         with open(archivo, 'r') as f:
-            for linea in f: # Imprimir la línea actual
-                tipo, valor = linea.strip().split(': ') #linea.strip() elimina cualquier espacio en blanco ,#split(': ') divide la cadena en dos partes usando la cadena
+            for linea in f:
+                tipo, valor = linea.strip().split(',')
                 if 'codigo' in tipo:
-                    codigo = tipo.split('')[1]
+                    codigotipo = tipo.split('')[1]
                     codigo[codigotipo] = int(valor)
-                elif 'precios' in tipo:
-                    precio_tipo = tipo.split('')[1]
-                    precios[precio_tipo] = int(valor)
+                elif 'nombre' in tipo:
+                    nombretipo = tipo.split('')[1]
+                    nombre[nombretipo] = int(valor)
+                elif 'marca' in tipo:
+                    marcatipo = tipo.split('')[1]
+                    marca[marcatipo] = int(valor)
+                elif 'precio' in tipo:
+                    preciotipo = tipo.split('')[1]
+                    precio[preciotipo] = int(valor)
+                elif 'existencias' in tipo:
+                    existenciastipo = tipo.split('')[1]
+                    existencias[existenciastipo] = int(valor)
     except FileNotFoundError:
         print(f"El archivo {archivo} no fue encontrado.")
-    return espacios, precios
+        return codigo, nombre, marca, precio, existencias
 
-def guardarFactura(pfactura):
-    opcion = input("¿En qué formato desea guardar la factura (txt o pdf)? ").lower()
-    if opcion == "txt":
-        with open("factura.txt", "w") as file:
-            file.write(pfactura)
-        print("Factura guardada en TXT")
-    elif opcion == "pdf":
-        c = canvas.Canvas("factura.pdf")
-        width, height = letter
-        c.drawString(100, height - 40, "Factura")
-        y = height - 60
-        for line in pfactura.split('\n'):
-            c.drawString(100, y, line)
-            y -= 20
-        c.save()
-        print("Factura guardada en PDF")
-    else:
-        print(f"{BOLD}{RED}Opción de formato de archivo no válida{RESET}")
 
 if __name__ == "__main__":
     main()

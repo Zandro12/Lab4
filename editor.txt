@@ -1,0 +1,5 @@
+codigo,5
+nombre,1
+marca,registrada
+precio,23
+existencias,5
