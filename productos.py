@@ -17,7 +17,7 @@ def buscar_productos(codigo):
             return productos
     return None
 
-def modificar_estudiante(carnet, nombre, edad, calificaciones):
+def modificar_productos(carnet, nombre, edad, calificaciones):
     estudiante=buscar_estudiante(carnet)
     if estudiante:
         estudiante["nombre"]=nombre
