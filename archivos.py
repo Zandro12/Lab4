@@ -12,7 +12,20 @@ WHITE = "\033[37m"
 
 from datetime import datetime as dt
 import productos as pro
-from productos import seleccionar_proveedor
+
+Proveedores = [
+    {"nombre":"Pablo Arias","Pais":"Colombia",},
+    {"nombre":"Gerardo Umaña ","provincia":"alajuela",},
+    {"nombre":"Mario Gomez","provincia":"alajuela",}
+]
+
+def seleccionar_proveedor():
+    print("Seleccione un proveedor:")
+    for idx, proveedor in enumerate(Proveedores, start=1):
+        print(f"{idx}. {proveedor}")
+    opcion = int(input("Ingrese el número del proveedor: "))
+    return Proveedores[opcion - 1]
+
 #from reportlab.lib.pagesizes import letter
 #from productos import agregar_productos, buscar_productos, modificar_productos
 
