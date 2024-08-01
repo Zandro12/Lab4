@@ -1,15 +1,17 @@
-estudiantes=[]
+inventario=[]
 
-def agregar_estudiante(carnet, nombre, edad):
-    estudiante={
-        "carnet":carnet,
+def agregar_productos(codigo, nombre, marca, precio, existencias):
+    proveedor={
+       "codigo":codigo,
         "nombre":nombre,
-        "eda":edad,
-        "calificaciones":[]
+        "marca":marca,
+        "precio":precio,
+        "existencias":existencias,
+        "proveedor":[]
     }
-    estudiantes.append(estudiante)
+    proveedor.append(inventario)
 
-def buscar_estudiante(carnet):
+def buscar_productos(codigo):
     for estudiante in estudiantes:
         if estudiante["carnet"]==carnet:
             return estudiante
