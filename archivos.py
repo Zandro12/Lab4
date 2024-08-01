@@ -39,22 +39,13 @@ def main():
                 pro.agregar_productos(codigo, nombre, marca, precio, existencias)
 
             elif opcion == "2":
-                carnet = input("Carnet: ")
-                estudiante = pro.buscar_productos(carnet)
-                if estudiante:
-                    print(estudiante)
-                else:
-                    print("Estudiante no encontrado.")
+                codigo = input("Codigo: ")
+                pro.eliminar_producto(codigo)
 
             elif opcion == "3":
-                carnet = input("Carnet: ")
-                nombre = input("Nuevo nombre: ")
-                edad = int(input("Nueva edad: "))
-                calificaciones = input("Calificaciones: ")
-                if pro.modificar_produtos(carnet, nombre, edad, calificaciones):
-                    print("Estudiante modificado.")
-                else:
-                    print("Estudiante no encontrado.")
+                codigo = input("Codigo: ")
+                precio = float(input("Precio: "))
+                pro.modificar_precio(codigo, precio)
 
             elif opcion == "4":
                 carnet = input("Carnet: ")
