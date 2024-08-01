@@ -40,12 +40,15 @@ def main():
 
             elif opcion == "2":
                 codigo = input("Codigo: ")
-                pro.eliminar_producto(codigo)
+                if pro.eliminar_producto(codigo):
+                    print("Producto eliminado.")
+                else:
+                    print("Producto no encontrado.")
 
             elif opcion == "3":
                 codigo = input("Codigo: ")
                 precio = float(input("Precio: "))
-                pro.modificar_precio(codigo, precio)
+                pro.modificar_precios(codigo, precio)
 
             elif opcion == "4":
                 carnet = input("Carnet: ")
@@ -55,19 +58,13 @@ def main():
                     print("Estudiante no encontrado.")
 
             elif opcion == "5":
-                carnet = input("Agregar Carnet de estudiante: ")
-                calificaciones = []
-                while True:
-                    materia = input("Agregar nueva materia o 'fin' para terminar: ")
-                    if materia.lower() == 'fin':
-                        break
-                    nota = float(input("Nota: "))
-                    calificaciones.append((materia, nota))
-                if pro.calificar_estudiante(carnet, calificaciones):
-                    print("Notas agregadas con exito!")
+                codigo = input("Codigo: ")
+                producto = pro.buscar_productos(codigo)
+                if producto:
+                    print(producto)
                 else:
-                    print("Estudiante no encontrado.")
-
+                    print("Producto no encontrado.")
+        
             elif opcion == "6":
                 carnet = input("Carnet: ")
                 promedio = pro.promedio_calificaciones(carnet)
@@ -91,3 +88,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
