@@ -1,4 +1,4 @@
-Inventario=[]
+Inventario = []
 
 def agregar_productos(codigo, nombre, marca, precio, existencias):
     proveedor={
@@ -38,40 +38,7 @@ def listar_producto(agregar_productos):
 
 
 
-Inventario = []
 
-def agregar_productos(codigo, nombre, marca, precio, existencias):
-    producto = {
-        "codigo": codigo,
-        "nombre": nombre,
-        "marca": marca,
-        "precio": precio,
-        "existencias": existencias
-    }
-    Inventario.append(producto)
 
-def buscar_productos(codigo):
-    for producto in Inventario:
-        if producto["codigo"] == codigo:
-            return producto
-    return "Producto no encontrado"
-
-def eliminar_producto(codigo):
-    producto = buscar_productos(codigo)
-    if producto != "Producto no encontrado":
-        Inventario.remove(producto)
-        return "Producto eliminado"
-    return "Producto no encontrado"
-
-def modificar_precios(codigo, nuevo_precio):
-    producto = buscar_productos(codigo)
-    if producto != "Producto no encontrado":
-        producto["precio"] = nuevo_precio
-        return "Precio modificado"
-    return "Producto no encontrado"
-
-def listar_productos():
-    for producto in Inventario:
-        print(f"Código: {producto['codigo']}, Nombre: {producto['nombre']}, Marca: {producto['marca']}, Precio: {producto['precio']}, Existencias: {producto['existencias']}")
 
 
