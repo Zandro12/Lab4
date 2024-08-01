@@ -18,11 +18,11 @@ def buscar_productos(codigo):
     return None
 
 def eliminar_producto(codigo):
-    productos=buscar_productos(codigo)
-    if productos:
-        productos.remove(Inventario)
-        return True
-    return False
+    producto = buscar_productos(codigo)
+    if producto != "Producto no encontrado":
+        Inventario.remove(producto)
+        return "Producto eliminado"
+    return "Producto no encontrado"
 
 def modificar_precios(precio):
     producto=buscar_productos(precio)
@@ -74,11 +74,4 @@ def listar_productos():
     for producto in Inventario:
         print(f"Código: {producto['codigo']}, Nombre: {producto['nombre']}, Marca: {producto['marca']}, Precio: {producto['precio']}, Existencias: {producto['existencias']}")
 
-# Ejemplo de uso
-agregar_productos(1, 'Manzana', 'Marca A', 0.5, 100)
-agregar_productos(2, 'Banana', 'Marca B', 0.3, 150)
 
-print(buscar_productos(1))
-print(eliminar_producto(2))
-print(modificar_precios(1, 0.6))
-listar_productos()
