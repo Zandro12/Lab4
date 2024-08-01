@@ -24,11 +24,11 @@ def modificar_precios(precio):
         producto["precio"] = precio
         return True
     return False
-
-def listar_productos(inventario):
+"""
+def listar_productos():
     for inventario in  :
         .mostrar_informacion()
-
+"""
 def buscar_productos(codigo):
     for productos in Inventario:
         if productos["codigo"] == codigo:
