@@ -10,7 +10,7 @@ MAGENTA = "\033[35m"
 CYAN = "\033[36m"
 WHITE = "\033[37m"
 
-import gestor_estudiantes as ge
+import productos as pro
 
 def mostrar_menu():
     print(f" {BOLD} {BLUE} Bienvenido al sistema de gestion de estudiantes {RESET}")
@@ -33,11 +33,11 @@ def main():
                 carnet = input("Carnet: ")
                 nombre = input("Nombre: ")
                 edad = int(input("Edad: "))
-                ge.agregar_estudiante(carnet, nombre, edad)
+                pro.agregar_productos(carnet, nombre, edad)
 
             elif opcion == "2":
                 carnet = input("Carnet: ")
-                estudiante = ge.buscar_estudiante(carnet)
+                estudiante = pro.buscar_productos(carnet)
                 if estudiante:
                     print(estudiante)
                 else:
@@ -48,14 +48,14 @@ def main():
                 nombre = input("Nuevo nombre: ")
                 edad = int(input("Nueva edad: "))
                 calificaciones = input("Calificaciones: ")
-                if ge.modificar_estudiante(carnet, nombre, edad, calificaciones):
+                if ge.modificar_produtos(carnet, nombre, edad, calificaciones):
                     print("Estudiante modificado.")
                 else:
                     print("Estudiante no encontrado.")
 
             elif opcion == "4":
                 carnet = input("Carnet: ")
-                if ge.eliminar_estudiante(carnet):
+                if pro.eliminar_estudiante(carnet):
                     print("Estudiante eliminado.")
                 else:
                     print("Estudiante no encontrado.")
@@ -69,18 +69,18 @@ def main():
                         break
                     nota = float(input("Nota: "))
                     calificaciones.append((materia, nota))
-                if ge.calificar_estudiante(carnet, calificaciones):
+                if pro.calificar_estudiante(carnet, calificaciones):
                     print("Notas agregadas con exito!")
                 else:
                     print("Estudiante no encontrado.")
 
             elif opcion == "6":
                 carnet = input("Carnet: ")
-                promedio = ge.promedio_calificaciones(carnet)
+                promedio = pro.promedio_calificaciones(carnet)
                 print(f"Promedio de calificaciones: {promedio}")
 
             elif opcion == "7":
-                aprobados, reprobados = ge.lista_aprobados_reprobados()
+                aprobados, reprobados = pro.lista_aprobados_reprobados()
                 print("Aprobados:")
                 for estudiante in aprobados:
                     print(estudiante)
