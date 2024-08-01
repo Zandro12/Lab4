@@ -86,11 +86,11 @@ def main():
 
 def guardar_inventario():
 
-    opcion = input("¿Desea guardar la factura (txt)? ").lower()
+    opcion = input("¿Desea guardar el inventario (txt)? ").lower()
     if opcion == "txt":
         with open("factura.txt", "w") as file:
             file.write(opcion)
-        print("inventario guardada en TXT")
+        print("inventario guardado en TXT")
     else:
         print(f"{BOLD}{RED}Opción de formato de archivo no válida{RESET}")
 
