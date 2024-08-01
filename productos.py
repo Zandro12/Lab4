@@ -15,8 +15,7 @@ def eliminar_producto(codigo):
     productos=buscar_productos(codigo)
     if productos:
         productos.remove(Inventario)
-        return True
-    return False
+    return None
 
 def modificar_precios(precio):
     producto=buscar_productos(precio)
@@ -24,11 +23,11 @@ def modificar_precios(precio):
         producto["precio"] = precio
         return True
     return False
-"""
-def listar_productos():
-    for inventario in  :
-        .mostrar_informacion()
-"""
+
+def mostrar_productos(agregar_productos):
+    print(f"codigo: {agregar_productos.codigo}")
+    print(f"codigo: {agregar_productos.codigo}")
+
 def buscar_productos(codigo):
     for productos in Inventario:
         if productos["codigo"] == codigo:
