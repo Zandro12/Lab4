@@ -11,17 +11,18 @@ CYAN = "\033[36m"
 WHITE = "\033[37m"
 
 import productos as pro
+#from productos import agregar_productos, buscar_productos, modificar_productos
 
 def mostrar_menu():
     print(f" {BOLD} {BLUE} Bienvenido al sistema de gestion de estudiantes {RESET}")
     print(f" {BOLD} {BLUE} Menu Principal {RESET}")
-    print(f" {BOLD} {YELLOW} 1. Agregar estudiante {RESET}")
-    print(f" {BOLD} {YELLOW} 2. Buscar estudiante {RESET}")
-    print(f" {BOLD} {YELLOW} 3. Modificar estudiante {RESET}")
-    print(f" {BOLD} {YELLOW} 4. Eliminar estudiante {RESET}")
-    print(f" {BOLD} {YELLOW} 5. Agregar calificaciones {RESET}")
-    print(f" {BOLD} {YELLOW} 6. Mostrar promedio de calificaciones {RESET}")
-    print(f" {BOLD} {YELLOW} 7. Mostrar lista de aprobados y reprobados {RESET}")
+    print(f" {BOLD} {YELLOW} 1. Agregar producto {RESET}")
+    print(f" {BOLD} {YELLOW} 2. Eliminar producto {RESET}")
+    print(f" {BOLD} {YELLOW} 3. Actualizar Precio de producto {RESET}")
+    print(f" {BOLD} {YELLOW} 4. Listar productos {RESET}")
+    print(f" {BOLD} {YELLOW} 5. Buscar producto {RESET}")
+    print(f" {BOLD} {YELLOW} 6. Guardar inventario en archivo {RESET}")
+    print(f" {BOLD} {YELLOW} 7. Cargar inventario desde archivo {RESET}")
     print(f" {BOLD} {YELLOW} 8. Salir {RESET}")
 
 def main():
@@ -30,10 +31,12 @@ def main():
             mostrar_menu()
             opcion = input(f" {BOLD} {CYAN} Seleccione una opcion: {RESET}")
             if opcion == "1":
-                carnet = input("Carnet: ")
+                codigo = input("Codigo: ")
                 nombre = input("Nombre: ")
-                edad = int(input("Edad: "))
-                pro.agregar_productos(carnet, nombre, edad)
+                marca =  input("Marca: ")
+                precio = float(input("Precio: "))
+                existencias = int(input("Existencias: "))
+                pro.agregar_productos(codigo, nombre, marca, precio, existencias)
 
             elif opcion == "2":
                 carnet = input("Carnet: ")
@@ -48,7 +51,7 @@ def main():
                 nombre = input("Nuevo nombre: ")
                 edad = int(input("Nueva edad: "))
                 calificaciones = input("Calificaciones: ")
-                if ge.modificar_produtos(carnet, nombre, edad, calificaciones):
+                if pro.modificar_produtos(carnet, nombre, edad, calificaciones):
                     print("Estudiante modificado.")
                 else:
                     print("Estudiante no encontrado.")
